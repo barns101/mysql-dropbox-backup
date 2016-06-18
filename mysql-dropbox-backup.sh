@@ -18,6 +18,9 @@ encryption_pass=yourEncryptionPasssword
 # List of databases to ignore (space separated)
 db_ignore=(Database information_schema mysql performance_schema)
 
+# Should we backup the MySQL "user" table?
+backup_mysql_user_table=true
+
 ################################
 # End of configuration section #
 #                              #
@@ -49,6 +52,13 @@ do
         fi
     done
 done
+
+# And finally, if configured, backup the "users" table from the "mysql" database that is omitted by default
+if [[ "$backup_mysql_user_table" == true ]]; then
+    sqlfile=$current_date"/mysql_users_table.sql"
+    echo "Dumping MySql users table to $sqlfile"
+    mysqldump -u$mysql_user -p$mysql_passwd -h$mysql_host mysql user > $sqlfile
+fi
 
 # Tar, compress, and encrypt the dumped SQL files
 echo "Compressing and encrypting dumped SQL files..."
