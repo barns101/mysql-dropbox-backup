@@ -3,14 +3,13 @@
 ################################################################
 # Configuration section                                        #
 #                                                              #
-# Enter your MySQL connection details, choose an encryption    #
-# password and specify which databases should not be backed up #
+# Enter your MySQL connection details in the config file shown #
+# below, choose an encryption password and specify which       #
+# databases should not be backed up                            #
 ################################################################
 
-# MySQL database connection details
-mysql_host=localhost
-mysql_user=root
-mysql_passwd=yourRootPassword
+# MySQL config file
+config=mysql-dropbox-backup.cnf
 
 # Backup file encryption password
 encryption_pass=yourEncryptionPasssword
@@ -28,7 +27,7 @@ backup_mysql_user_table=true
 ################################
 
 # Get a list of databases
-db_arr=$(echo "show databases;" | mysql -u$mysql_user -p$mysql_passwd -h$mysql_host)
+db_arr=$(echo "show databases;" | mysql --defaults-extra-file=$config)
 
 # Get the current date. Used for file names etc...
 current_date=$(date +"%Y-%m-%d")
@@ -47,7 +46,7 @@ do
         if ! [[ ${db_ignore[*]} =~ "$dbname" ]] ; then
             sqlfile=$current_date"/"$dbname".sql"
             echo "Dumping $dbname to $sqlfile"
-            mysqldump -u$mysql_user -p$mysql_passwd -h$mysql_host $dbname > $sqlfile
+            mysqldump --defaults-extra-file=$config $dbname > $sqlfile
             break
         fi
     done
@@ -57,7 +56,7 @@ done
 if [[ "$backup_mysql_user_table" == true ]]; then
     sqlfile=$current_date"/mysql_users_table.sql"
     echo "Dumping MySql users table to $sqlfile"
-    mysqldump -u$mysql_user -p$mysql_passwd -h$mysql_host mysql user > $sqlfile
+    mysqldump --defaults-extra-file=$config mysql user > $sqlfile
 fi
 
 # Tar, compress, and encrypt the dumped SQL files
