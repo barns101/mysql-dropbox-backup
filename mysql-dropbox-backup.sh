@@ -61,7 +61,7 @@ fi
 
 # Tar, compress, and encrypt the dumped SQL files
 echo "Compressing and encrypting dumped SQL files..."
-tar cz $current_date | openssl enc -aes-256-cbc -e -k $encryption_pass > $current_date.tar.gz.enc
+tar cz $current_date | openssl enc -aes-256-cbc -e -iter 30 -k $encryption_pass > $current_date.tar.gz.enc
 
 # Remove the backups directory
 echo "Removing dumped SQL files..."

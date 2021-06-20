@@ -42,7 +42,7 @@ The script is quite verbose and will output which databases were backed up and t
 In the unfortunate event that you need to use a backup, it can be decrypted and the tarball expanded as follows, once downloaded from [Dropbox]:
 
 ```
-openssl aes-256-cbc -d -in <backup-file.tar.gz.enc> | tar xz
+openssl enc -aes-256-cbc -d -iter 30 -in <backup-file.tar.gz.enc> | tar xz
 ```
 
 Then the SQL files will be available to restore within the resulting directory.
