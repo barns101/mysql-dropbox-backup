@@ -4,7 +4,7 @@ Dump MySQL databases, compress & encrypt them, and upload to [Dropbox] for a sim
 
 ## Overview
 
-`mysql-dropbox-backup` is a simple shell script that will use `mysqldump` to dump all of your MySQL databases, omitting any that you specify, add them to a compressed and encrypted tarball, and upload them to [Dropbox] for a simple off-site backup solution. By defauly it will also dump the MySQL `user` table. The script makes use of the [Dropbox-Uploader] project by [Andrea Fabrizi]. Run it as a daily cron job to keep 7 days of backups. On each run it will try to delete the backup taken 7 days ago.
+`mysql-dropbox-backup` is a simple shell script that will use `mysqldump` to dump all of your MySQL databases, omitting any that you specify, add them to a compressed and encrypted tarball, and upload them to [Dropbox] for a simple off-site backup solution. By default it will also dump the MySQL `user` table. The script makes use of the [Dropbox-Uploader] project by [Andrea Fabrizi]. Run it as a daily cron job to keep 7 days of backups. On each run it will try to delete the backup taken 7 days ago.
 
 ## Requirements
 
