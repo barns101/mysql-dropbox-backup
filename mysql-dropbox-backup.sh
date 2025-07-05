@@ -9,7 +9,7 @@
 ################################################################
 
 # MySQL config file
-config=mysql-dropbox-backup.cnf
+config=mysql-dropbox-backup.conf
 
 # Backup file encryption password
 encryption_pass=yourEncryptionPasssword

@@ -19,9 +19,9 @@ Most Linux systems will come with cURL and OpenSSL installed. [Dropbox] gives aw
 
 First grab a copy of [Dropbox-Uploader], follow its installation instructions, and link it to your [Dropbox] account. I have it installed in my home directory, but it can reside elsewhere.
 
-Next get a copy of `mysql-dropbox-backup.sh` and `mysql-dropbox-backup.cf`, and save them in the same directory as `dropbox_uploader.sh`.
+Next get a copy of `mysql-dropbox-backup.sh` and `mysql-dropbox-backup.conf`, and save them in the same directory as `dropbox_uploader.sh`.
 
-Edit `mysql-dropbox-backup.cf` to add your MySQL connection details.
+Edit `mysql-dropbox-backup.conf` to add your MySQL connection details.
 
 Edit the top section of `mysql-dropbox-backup.sh` to give it your MySQL config file location, your chosen encryption password for your backup file, and edit the list of ignored databases if you wish. You can also choose whether to dump the MySQL `user` table or not.
 
