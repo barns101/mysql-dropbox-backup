@@ -27,12 +27,18 @@ Edit the top section of `mysql-dropbox-backup.sh` to specify your MySQL config f
 
 ## Usage
 
-`mysql-dropbox-backup` is run from the CLI, taking no parameters.
-
-Ideally it be run as a daily cron job. After uploading the new backup, it will attempt to delete the backup from 7 days previous, so that only one week of backups are retained.
+`mysql-dropbox-backup` is run from the CLI with no parameters like this:
 
 ```
 ./mysql-dropbox-backup.sh
+```
+
+Ideally it will be run as a daily cron job. After uploading the new backup, it will attempt to delete the backup from 7 days previous, so that only one week of backups are retained.
+
+This example crontab entry will run it from your home directory at 1 minute past midnight every day:
+
+```
+1 0 * * * ./mysql-dropbox-backup.sh
 ```
 
 The script is quite verbose and will output which databases were backed up and the names of any files generated etc...
