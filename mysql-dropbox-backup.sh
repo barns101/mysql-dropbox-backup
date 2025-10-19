@@ -15,7 +15,7 @@ config=mysql-dropbox-backup.conf
 encryption_pass=yourEncryptionPasssword
 
 # List of databases to ignore (space separated)
-db_ignore=(Database information_schema mysql performance_schema)
+db_ignore=(Database information_schema mysql performance_schema phpmyadmin sys)
 
 # Should we backup the MySQL "user" table?
 backup_mysql_user_table=true
