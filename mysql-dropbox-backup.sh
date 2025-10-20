@@ -26,6 +26,12 @@ backup_mysql_user_table=true
 # Nothing to edit below here   #
 ################################
 
+# Check that config file exists
+if [ ! -f "$config" ]; then
+    echo "Config file '$config' not found! Aborting."
+    exit 1
+fi
+
 # Get a list of databases
 db_arr=$(echo "show databases;" | mysql --defaults-extra-file=$config)
 
