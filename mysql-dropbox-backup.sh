@@ -35,6 +35,12 @@ fi
 # Get a list of databases
 db_arr=$(echo "show databases;" | mysql --defaults-extra-file=$config)
 
+# Check that DB connection was successful
+if [[ $db_arr == "" ]]; then
+    echo "Database connection failed. Aborting."
+    exit 1
+fi
+
 # Get the current date. Used for file names etc...
 current_date=$(date +"%Y-%m-%d")
 
